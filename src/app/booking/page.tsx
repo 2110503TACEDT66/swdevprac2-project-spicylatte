@@ -1,9 +1,11 @@
-import Selectbar from '@/components/booking/Selectbar'
-import React from 'react'
+import Select from "@/components/booking/Select";
+import React from "react";
 
 export default function page() {
   return (
-    <div><Selectbar></Selectbar></div>
-  )
+    <div>
+      <div className="flex justify-center">LET'S SEE THE CAMPGROUNDS</div>
+      <Select></Select>
+    </div>
+  );
 }
-
