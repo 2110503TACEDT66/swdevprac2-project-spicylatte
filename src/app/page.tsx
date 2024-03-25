@@ -4,7 +4,9 @@ import Link from "next/link";
 import { url } from "inspector";
 import Banner from "@/components/Banner";
 export default function Home() {
-  return <main>
-    <Banner></Banner>
-  </main>;
+  return (
+    <main>
+      <Banner></Banner>
+    </main>
+  );
 }

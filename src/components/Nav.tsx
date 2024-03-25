@@ -9,7 +9,7 @@ export default function Nav() {
       </div>
       <div className="flex gap-16">
         <div><Link href='/booking'>Booking</Link></div>
-        <div>Login</div>
+        <Link href="/api/auth/signin">Log-in</Link>
       </div>
     </div>
   );
