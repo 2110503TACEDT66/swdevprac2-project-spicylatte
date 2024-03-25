@@ -8,7 +8,7 @@ export default function Nav() {
         <Link href="/">Campground Booking</Link>
       </div>
       <div className="flex gap-16">
-        <div>Booking</div>
+        <div><Link href='/booking'>Booking</Link></div>
         <div>Login</div>
       </div>
     </div>
