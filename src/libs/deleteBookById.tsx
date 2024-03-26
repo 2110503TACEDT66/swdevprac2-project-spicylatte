@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
 
-export default async function deleteBookById(id: string, token: string) {
+export default async function deleteBookById(Bookid: string, token: string) {
   const response = await fetch(
     "https://presentation-day-1-spicylatte.vercel.app" +
-      `/api/v1/bookings/${id}`,
+      `/api/v1/bookings/${Bookid}`,
     {
       method: "DELETE",
       headers: {

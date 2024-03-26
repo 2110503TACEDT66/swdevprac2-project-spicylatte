@@ -10,7 +10,6 @@ import Bookings from "@/components/profile/Booking";
 
 export default async function page() {
   const session = await getServerSession(authOption);
-
   let bookings = null;
   if (!session) redirect("/auth/signin");
   else {
