@@ -8,12 +8,7 @@ export default function Home() {
   return (
     <main>
       <Hero></Hero>
-      {/* <Banner></Banner> */}
-      <div className="h-[100vh] justify-center w-full mt-40">
-        <div className="flex justify-center gap-20 mx-5 ">
-          
-        </div>
-      </div>
+      <Banner></Banner>
     </main>
   );
 }
