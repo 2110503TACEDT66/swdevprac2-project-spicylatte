@@ -26,8 +26,11 @@ export default function Hero() {
               <div>Find Your Perfect Campsite Today!</div>
             </div>
           </div>
-          <div className="mt-5">
-            <Select></Select>
+          <div className="mt-8 flex justify-center w-full">
+            {/* <Select></Select> */}
+            <button className="bg-[#1066B3] hover:bg-[#3899D3] text-white font-bold py-2 px-4 rounded-full">
+              จองเลย
+            </button>
           </div>
         </div>
       </div>

@@ -4,12 +4,12 @@ import React from "react";
 import { CgProfile } from "react-icons/cg";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
-import { UserProfileResponse } from "@/type";
+ import { UserProfileResponse } from "@/type"; 
 export default async function Nav() {
   const session = await getServerSession(authOption);
   let user;
   if (session) {
-    user = (await getUserProfile(session.user.token)) as UserProfileResponse;
+     user = (await getUserProfile(session.user.token)) as UserProfileResponse; 
     console.log("user", user);
   }
   return (
@@ -26,7 +26,7 @@ export default async function Nav() {
       </div>
       <div className="flex gap-10 items-center">
         <div>
-          <Link href="/booking">Camp</Link>
+          <Link href="/booking">Book</Link>
         </div>
 
         <Link
