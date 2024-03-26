@@ -21,3 +21,19 @@ export type Campgrounds = {
   imgSrc: string;
   tel:string;
 };
+
+export type Bookings ={
+  _id:string
+  bookDate:string
+  user:string
+  campground:Campground
+  createdAt:string
+
+}
+export type Campground ={
+  _id: string
+  name:string
+  tel:string
+  id:string
+
+}
