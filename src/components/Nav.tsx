@@ -22,7 +22,6 @@ export default async function Nav() {
           {session && user ? user.data.name : ""}
         </div>
         <Link href="/">Home</Link>
-        <Link href="/booking">Camp</Link>
       </div>
       <div className="flex gap-16 items-center">
         <div>
