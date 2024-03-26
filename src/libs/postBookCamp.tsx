@@ -17,15 +17,12 @@ export default async function postBookCamp(
       }),
     }
   );
-/*   console.log(process.env.BACKEND_URL); */
+  /*   console.log(process.env.BACKEND_URL); */
   if (!response.ok) {
-/*     console.log(token);
+    /*  console.log(token);
     console.log(Date);
     console.log(id); */
-    alert('อย่าเหลี่ยม')
-    /* throw new Error("Failed to book"); */
-  } else {
-    alert("Let's goooo");
+    return response.json();
   }
   return await response.json();
 }
