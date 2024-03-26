@@ -29,7 +29,7 @@ export default async function postBookCamp(
   } else {
     Swal.fire({
       title: "Success!",
-      text: "Booking edited successfully",
+      text: "Booking has been made",
       icon: "success",
     });
   }
