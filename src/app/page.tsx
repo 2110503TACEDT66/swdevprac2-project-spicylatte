@@ -1,11 +1,12 @@
-import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 import { url } from "inspector";
 import Banner from "@/components/Banner";
+import Hero from "@/components/Hero";
 export default function Home() {
   return (
     <main>
+      <Hero></Hero>
       <Banner></Banner>
     </main>
   );
