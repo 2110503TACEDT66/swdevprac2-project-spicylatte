@@ -33,7 +33,7 @@ export default function Page() {
       return;
     }
     try {
-      const res = await userSignUp(email, password, fullName, tel);
+      const res = await userSignUp(fullName, email, password, tel);
       if (res?.error) {
         setError("There's an error while signing you up");
         return;

@@ -30,6 +30,7 @@ export default function Page() {
         setError("Invalid Credentials");
         return;
       }
+      router.refresh();
       router.replace(callbackUrl ?? "/");
     } catch (e) {}
   };
