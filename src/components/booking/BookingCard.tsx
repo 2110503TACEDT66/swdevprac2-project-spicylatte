@@ -1,7 +1,7 @@
 "use client";
 import { ThemeProvider } from "@material-tailwind/react";
 import { GrStatusGoodSmall } from "react-icons/gr";
-import DatepickBtn from "@/components/booking/DatepickBtn";
+import DatepickBtn from "@/components/DatepickBtn";
 import { useSession } from "next-auth/react";
 import {
   Card,
@@ -35,6 +35,7 @@ export default function BookingCard({
   const [date, setDate] = useState("");
 
   const handleBtn = () => {
+    console.log(date.toString());
     const post = postBookCamp(session.data!.user.token, date.toString(), id);
   };
   return (

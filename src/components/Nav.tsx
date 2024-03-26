@@ -10,7 +10,7 @@ export default async function Nav() {
   let user;
   if (session) {
      user = (await getUserProfile(session.user.token)) as UserProfileResponse; 
-    console.log("user", user);
+
   }
   return (
     <div className="flex font-poppin text-lg justify-between mx-10 font-normal py-3 sticky top-0 z-50  rounded-b-xl">

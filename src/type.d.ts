@@ -19,21 +19,20 @@ export type Campgrounds = {
   bookings: [];
   id: string;
   imgSrc: string;
-  tel:string;
+  tel: string;
 };
 
-export type Bookings ={
-  _id:string
-  bookDate:string
-  user:string
-  campground:Campground
-  createdAt:string
+export type Booking = {
+  _id: string;
+  bookDate: string;
+  user: string;
+  campground: Campground;
+  createdAt: string;
 
-}
-export type Campground ={
-  _id: string
-  name:string
-  tel:string
-  id:string
-
-}
+};
+export type Campground = {
+  _id: string;
+  name: string;
+  tel: string;
+  id: string;
+};
