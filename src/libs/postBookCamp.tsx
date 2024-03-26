@@ -22,8 +22,8 @@ export default async function postBookCamp(
 /*     console.log(token);
     console.log(Date);
     console.log(id); */
-
-    throw new Error("Failed to book");
+    alert('อย่าเหลี่ยม')
+    /* throw new Error("Failed to book"); */
   } else {
     alert("Let's goooo");
   }

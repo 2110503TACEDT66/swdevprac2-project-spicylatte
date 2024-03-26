@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { FaCampground } from "react-icons/fa";
 import Select from "./booking/Select";
+import Link from "next/link";
 export default function Hero() {
   return (
     <>
@@ -26,11 +27,14 @@ export default function Hero() {
             </div>
             <div className="font-poppin font-semibold text-2xl flex gap-5 ">
               <FaCampground className="" />
-              <div className="mb-3">Find Your Perfect Campsite Today!</div>
+              <div className="mb-8">Find Your Perfect Campsite Today!</div>
             </div>
-            <button className="bg-[#1066B3] hover:bg-[#3899D3] text-white font-bold py-2 px-4 rounded-full">
+            <Link
+              className="bg-[#1066B3] hover:bg-[#3899D3] text-white font-bold py-2 px-4 rounded-full"
+              href="/booking"
+            >
               จองเลย
-            </button>
+            </Link>
           </div>
         </div>
       </div>
