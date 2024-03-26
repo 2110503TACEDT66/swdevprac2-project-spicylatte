@@ -15,7 +15,6 @@ export default async function Nav() {
           {session ? "Nonnyss" : ""}
         </div>
         <Link href="/">Home</Link>
-        <Link href="/booking">Camp</Link>
       </div>
       <div className="flex gap-10">
         <div className="flex items-center">
