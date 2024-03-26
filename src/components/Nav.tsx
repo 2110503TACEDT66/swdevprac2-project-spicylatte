@@ -6,12 +6,12 @@ import { CgProfile } from "react-icons/cg";
 import { useSession } from "next-auth/react";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
-import { UserProfileResponse } from "@/type";
+/* import { UserProfileResponse } from "@/type"; */
 export default async function Nav() {
   const session = await getServerSession(authOption);
   let user = null;
   if (session) {
-    user = (await getUserProfile(session.user.token)) as UserProfileResponse;
+    /* user = (await getUserProfile(session.user.token)) as UserProfileResponse; */
     console.log("user", user);
   }
   return (
@@ -19,13 +19,13 @@ export default async function Nav() {
       <div className="gap-8 flex items-center">
         <div className="flex items-center gap-2 cursor-pointer">
           {session ? <CgProfile size={40} /> : null}
-          {session && user ? user.data.name : ""}
+          {/* {session && user ? user.data.name : ""} */}
         </div>
         <Link href="/">Home</Link>
       </div>
       <div className="flex gap-10 items-center">
         <div>
-          <Link href="/booking">Camp</Link>
+          <Link href="/booking">Book</Link>
         </div>
 
         <Link
