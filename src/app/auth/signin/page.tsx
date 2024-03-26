@@ -13,7 +13,7 @@ export default function Page() {
   const router = useRouter();
   const callbackUrl = useSearchParams().get("callbackUrl");
 
-  const {data: session} = useSession();
+  const { data: session } = useSession();
   if (session) {
     router.replace(callbackUrl ?? "/");
   }
@@ -37,7 +37,7 @@ export default function Page() {
   const inputBoxClass =
     "mb-5 w-full duration-300 rounded-xl border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-opacity-50";
   return (
-    <div className="bg-white rounded-xl p-10 ">
+    <div className="bg-white rounded-xl p-10 max-w-lg">
       <h1 className="text-2xl font-bold mb-10 text-left ">
         Sign in to Campground Booking
       </h1>
@@ -50,7 +50,7 @@ export default function Page() {
         </div>
         <span>Sign in with Google</span>
       </button> */}
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full ">
         {/* <div className="h-[1px] w-full bg-gray-300 "></div> */}
         <p className="text-center text-gray-500 flex-auto">
           or sign in with email
