@@ -21,25 +21,27 @@ export default function Page() {
   const credentailSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await signIn("credentials", {
+      const res = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
+      if (res?.error) {
+        setError("Invalid Credentials");
+        return;
+      }
       router.replace(callbackUrl ?? "/");
-    } catch (e) {
-      console.error(e);
-    }
+    } catch (e) {}
   };
 
   const inputBoxClass =
     "mb-5 w-full duration-300 rounded-xl border border-gray-200 focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-opacity-50";
   return (
-    <div>
+    <div className="bg-white rounded-xl p-10 ">
       <h1 className="text-2xl font-bold mb-10 text-left ">
         Sign in to Campground Booking
       </h1>
-      <button
+      {/* <button
         className="flex gap-3 rounded-full border border-gray-200 p-3 px-12 justify-center items-center mb-5 w-full focus:outline-none focus:border-gray-900 focus:ring-1 focus:ring-gray-900 focus:ring-opacity-50"
         onClick={() => signIn("google")}
       >
@@ -47,7 +49,7 @@ export default function Page() {
           <GoogleIcon />
         </div>
         <span>Sign in with Google</span>
-      </button>
+      </button> */}
       <div className="flex items-center justify-center w-full">
         {/* <div className="h-[1px] w-full bg-gray-300 "></div> */}
         <p className="text-center text-gray-500 flex-auto">
@@ -74,13 +76,15 @@ export default function Page() {
           <span>Sign In</span>
         </button>
       </form>
-
-      <p className="text-gray-500 text-center mt-5">
-        Don't have an account?{" "}
-        <Link href="/auth/signup" className="underline text-gray-900">
-          Sign up
-        </Link>
-      </p>
+      <div className="mt-5">
+        {error && <span className="text-red-500 text-center">{error}</span>}
+        <p className="text-gray-500 text-center mt-5">
+          Don't have an account?{" "}
+          <Link href="/auth/signup" className="underline text-gray-900">
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 }
