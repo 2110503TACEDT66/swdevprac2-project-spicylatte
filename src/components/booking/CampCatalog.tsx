@@ -3,7 +3,7 @@ import React from "react";
 import { getServerSession } from "next-auth";
 import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import { Campgrounds } from "@/type";
-import BookingCard from "./BookingCard";
+import BookingCard from "./CampGroundCard";
 export default async function BookingCatalog() {
   const session = await getServerSession(authOption);
   if (!session || !session.user.token) return null;

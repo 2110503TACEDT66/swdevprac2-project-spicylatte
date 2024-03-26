@@ -36,8 +36,7 @@ export default function BookingCard({
   const [date, setDate] = useState("");
 
   const handleBtn = () => {
-    console.log(date.toString());
-    const post = postBookCamp(session.data!.user.token, date.toString(), id);
+    postBookCamp(session.data!.user.token, date.toString(), id);
   };
   return (
     <ThemeProvider>

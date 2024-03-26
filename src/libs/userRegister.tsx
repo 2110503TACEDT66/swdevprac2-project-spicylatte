@@ -4,9 +4,9 @@ export default async function userSignUp(
   password: string,
   tel: string
 ) {
-  
   const response = await fetch(
-    "https://presentation-day-1-spicylatte.vercel.app" + "/api/v1/auth/register",
+    "https://presentation-day-1-spicylatte.vercel.app" +
+      "/api/v1/auth/register",
     {
       method: "POST",
       headers: {

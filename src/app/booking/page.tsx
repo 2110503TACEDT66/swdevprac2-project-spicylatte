@@ -1,11 +1,11 @@
 import Select from "@/components/booking/Select";
 import React from "react";
-import Card from "@/components/booking/BookingCard";
+import Card from "@/components/booking/CampGroundCard";
 import { authOption } from "../api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import getAllCamp from "@/libs/getAllCamp";
-import BookingCard from "@/components/booking/BookingCard";
-import BookingCatalog from "@/components/booking/BookingCatalog";
+import BookingCard from "@/components/booking/CampGroundCard";
+import BookingCatalog from "@/components/booking/CampCatalog";
 export default async function page() {
   return (
     <div>

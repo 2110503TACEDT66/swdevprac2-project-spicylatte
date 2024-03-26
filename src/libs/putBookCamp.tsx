@@ -5,7 +5,7 @@ export default async function postBookCamp(
   id: string
 ) {
   const response = await fetch(
-    "http://localhost:5001" +
+    "https://presentation-day-1-spicylatte.vercel.app" +
       `/api/v1/bookings/${id}`,
     {
       method: "PUT",
