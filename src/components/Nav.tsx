@@ -23,6 +23,7 @@ export default async function Nav() {
         </Link>
 
         <Link href="/">Home</Link>
+        {session ? <Link href="/profile">My Bookings</Link> : null}
       </div>
       <div className="flex gap-10 items-center">
         <div>
