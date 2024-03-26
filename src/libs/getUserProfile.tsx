@@ -1,6 +1,6 @@
 export default async function getUserProfile(token: string) {
   const response = await fetch(
-    "https://vaccine-app-backend.vercel.app/api/v1/auth/me",
+    process.env.BACKEND_URL + "/api/v1/auth/me",
     {
       method: "GET",
       headers: {
