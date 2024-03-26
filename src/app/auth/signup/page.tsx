@@ -4,12 +4,16 @@ import userSignUp from "@/libs/userRegister";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 import React, { useState } from "react";
 
 export default function Page() {
+  const MySwal = withReactContent(Swal);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [fullName, setFullName] = useState("");
   const [tel, setTel] = useState("");
 
@@ -25,16 +29,48 @@ export default function Page() {
   const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if(!email || !password || !fullName || !tel) {
+      MySwal.fire({
+        icon: "error",
+        title: <p>Error</p>,
+        text: "Please fill all the fields",
+        confirmButtonText: "Let me try again!",
+        confirmButtonColor: "#F27474"
+      });
       setError("Please fill all the fields");
       return;
     }
     if(isNaN(Number(tel))) {
+      MySwal.fire({
+        icon: "error",
+        title: <p>Error</p>,
+        text: "Phone number must be a number",
+        confirmButtonText: "Let me try again!",
+        confirmButtonColor: "#F27474"
+      });
       setError("Phone number must be a number");
+      return;
+    }
+    if(password !== passwordConfirm) {
+      MySwal.fire({
+        icon: "error",
+        title: <p>Error</p>,
+        text: "Password and Confirm Password must be the same",
+        confirmButtonText: "Let me try again!",
+        confirmButtonColor: "#F27474"
+      });
+      setError("Password and Confirm Password must be the same");
       return;
     }
     try {
       const res = await userSignUp(fullName, email, password, tel);
       if (res?.error) {
+        MySwal.fire({
+          icon: "error",
+          title: <p>Error</p>,
+          text: "Invalid Credentials",
+          confirmButtonText: "Let me try again!",
+          confirmButtonColor: "#F27474"
+        });
         setError("There's an error while signing you up");
         return;
       }
@@ -42,6 +78,13 @@ export default function Page() {
         email,
         password,
         redirect: false,
+      });
+      MySwal.fire({
+        icon: "success",
+        title: <p>Welcome!</p>,
+        text: "Sign Up successful",
+        confirmButtonText: "Dismiss",
+        confirmButtonColor: "#A5DC86"
       });
       router.refresh(); // refresh the nav
       router.replace(callbackUrl ?? "/");
@@ -107,11 +150,19 @@ export default function Page() {
           onChange={(e) => setPassword(e.currentTarget.value)}
           required
         />
+        <label className="font-bold">Confirm Password</label>
+        <input
+          type="password"
+          className={inputBoxClass}
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.currentTarget.value)}
+          required
+        />
         <button className=" bg-black flex items-center justify-center text-white w-full p-3 px-12 rounded-full  focus:outline-none">
           <span>Sign Up</span>
         </button>
       </form>
-      <div className="mt-5">
+      <div className="mt-5 text-center">
         {error && <span className="text-red-500 text-center">{error}</span>}
         <p className="text-gray-500 text-center ">
           Already have an account?{" "}

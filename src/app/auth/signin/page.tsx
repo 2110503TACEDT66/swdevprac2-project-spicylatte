@@ -3,10 +3,13 @@ import GoogleIcon from "@/components/login/GoogleIcon";
 import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import React, { useState } from "react";
 
 export default function Page() {
+  const MySwal = withReactContent(Swal);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -27,9 +30,24 @@ export default function Page() {
         redirect: false,
       });
       if (res?.error) {
+        MySwal.fire({
+          icon: "error",
+          title: <p>Error</p>,
+          text: "Invalid Credentials",
+          confirmButtonText: "Let me try again!",
+          confirmButtonColor: "#F27474",
+        });
         setError("Invalid Credentials");
         return;
       }
+
+      MySwal.fire({
+        icon: "success",
+        title: <p>Welcome!</p>,
+        text: "Login successful",
+        confirmButtonText: "Dismiss",
+        confirmButtonColor: "#A5DC86",
+      });
       router.refresh();
       router.replace(callbackUrl ?? "/");
     } catch (e) {}
@@ -77,7 +95,7 @@ export default function Page() {
           <span>Sign In</span>
         </button>
       </form>
-      <div className="mt-5">
+      <div className="mt-5 text-center">
         {error && <span className="text-red-500 text-center">{error}</span>}
         <p className="text-gray-500 text-center mt-5">
           Don't have an account?{" "}
