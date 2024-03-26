@@ -11,7 +11,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
+import deleteBookById from "@/libs/deleteBookById";
+import { useRouter } from "next/navigation";
 export default function Bookings({ booking }: { booking: Booking }) {
+  const router = useRouter();
   const { data: session } = useSession();
   const bookCreatedAt = new Date(booking.createdAt);
   const checkIn = new Date(booking.bookDate);
@@ -39,9 +42,11 @@ export default function Bookings({ booking }: { booking: Booking }) {
         confirmButton: "order-2",
         denyButton: "order-3",
       },
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
+        await deleteBookById(session?.user.token as string, booking._id);
         Swal.fire("Booking Deleted!", "", "success");
+        router.refresh();
       }
     });
   };
