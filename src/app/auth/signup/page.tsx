@@ -38,6 +38,12 @@ export default function Page() {
         setError("There's an error while signing you up");
         return;
       }
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+      router.refresh(); // refresh the nav
       router.replace(callbackUrl ?? "/");
     } catch (e) {
       console.error(e);
