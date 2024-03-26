@@ -23,9 +23,9 @@ export default async function Nav() {
         </div>
         <Link href="/">Home</Link>
       </div>
-      <div className="flex gap-16 items-center">
+      <div className="flex gap-10 items-center">
         <div>
-          <Link href="/booking">Booking</Link>
+          <Link href="/booking">Camp</Link>
         </div>
 
         <Link
