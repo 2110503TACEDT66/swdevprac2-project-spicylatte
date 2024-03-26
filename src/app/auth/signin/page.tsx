@@ -13,7 +13,7 @@ export default function Page() {
   const router = useRouter();
   const callbackUrl = useSearchParams().get("callbackUrl");
 
-  const session = useSession();
+  const {data: session} = useSession();
   if (session) {
     router.replace(callbackUrl ?? "/");
   }
