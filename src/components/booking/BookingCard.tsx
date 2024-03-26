@@ -1,5 +1,8 @@
 "use client";
 import { ThemeProvider } from "@material-tailwind/react";
+import { GrStatusGoodSmall } from "react-icons/gr";
+import DatepickBtn from "@/components/booking/DatepickBtn";
+import { useSession } from "next-auth/react";
 import {
   Card,
   CardHeader,
@@ -10,16 +13,35 @@ import {
   Tooltip,
   IconButton,
 } from "@material-tailwind/react";
+import postBookCamp from "@/libs/postBookCamp";
+import { useState } from "react";
 
-export default function BookingCard({imgSrc} : {imgSrc: string}) {
+export default function BookingCard({
+  imgSrc,
+  name,
+  address,
+  tel,
+  available,
+  id,
+}: {
+  imgSrc: string;
+  name: string;
+  address: string;
+  tel: string;
+  available: boolean;
+  id: string;
+}) {
+  const session = useSession();
+  const [date, setDate] = useState("");
+
+  const handleBtn = () => {
+    const post = postBookCamp(session.data!.user.token, date.toString(), id);
+  };
   return (
     <ThemeProvider>
       <Card placeholder={""} className="w-full max-w-[26rem] shadow-lg">
         <CardHeader placeholder={""} floated={false} color="blue-gray">
-          <img
-            src={imgSrc}
-            alt="ui/ux review check"
-          />
+          <img src={imgSrc} />
           <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
           <IconButton
             placeholder={""}
@@ -44,9 +66,9 @@ export default function BookingCard({imgSrc} : {imgSrc: string}) {
               placeholder={""}
               variant="h5"
               color="blue-gray"
-              className="font-medium"
+              className="font-semibold"
             >
-              Wooden House, Florida
+              {name}
             </Typography>
             <Typography
               placeholder={""}
@@ -68,11 +90,25 @@ export default function BookingCard({imgSrc} : {imgSrc: string}) {
               5.0
             </Typography>
           </div>
-          <Typography placeholder={""} color="gray">
-            Enter a freshly updated and thoughtfully furnished peaceful home
-            surrounded by ancient trees, stone walls, and open meadows.
-          </Typography>
-          <div className="group mt-8 inline-flex flex-wrap items-center gap-3">
+          <div className="font-poppin font-medium flex gap-10 mt-3">
+            <div>{address}</div>
+            <div>{tel}</div>
+            <div className="font-poppin flex">
+              {available ? (
+                <div className="gap-1 flex justify-center items-center">
+                  <GrStatusGoodSmall color="#A0153E" />
+                  <div className="">STATUS</div>
+                </div>
+              ) : (
+                <div className="gap-1 flex justify-center items-center">
+                  <GrStatusGoodSmall color="#007F73" />
+                  <div>STATUS</div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="group mt-6 inline-flex flex-wrap items-center gap-3">
             <Tooltip content="$129 per night">
               <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                 <svg
@@ -160,11 +196,20 @@ export default function BookingCard({imgSrc} : {imgSrc: string}) {
             </Tooltip>
           </div>
         </CardBody>
-        <CardFooter placeholder={""} className="pt-20">
-          <Button placeholder={""} size="lg" fullWidth={true}>
-            Reserve
-          </Button>
-        </CardFooter>
+        <div className="flex flex-row mx-3 mb-3">
+          <DatepickBtn
+            Fn={(e: any) => {
+              setDate(e);
+              console.log(e);
+            }}
+          />
+
+          <div className="flex justify-center">
+            <Button placeholder={""} onClick={handleBtn}>
+              Reserve
+            </Button>
+          </div>
+        </div>
       </Card>
     </ThemeProvider>
   );
