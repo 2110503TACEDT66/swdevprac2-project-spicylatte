@@ -9,7 +9,7 @@ import { format } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 
-export default function Example({Fn}:{Fn:any}) {
+export default function Example({ Fn }: { Fn: any }) {
   const [date, setDate] = React.useState<Date>();
 
 
@@ -29,7 +29,6 @@ export default function Example({Fn}:{Fn:any}) {
             mode="single"
             selected={date}
             onSelect={(e) => {
-            
               setDate(e);
               Fn(e);
             }}

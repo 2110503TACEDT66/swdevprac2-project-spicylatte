@@ -1,6 +1,6 @@
 export default async function getAllCamp() {
   const response = await fetch(
-    process.env.BACKEND_URL + "/api/v1/campground/",
+    "https://presentation-day-1-spicylatte.vercel.app" + "/api/v1/campground/",
     {
       method: "GET",
     }

@@ -1,7 +1,9 @@
+import Swal from "sweetalert2";
 export default async function postBookCamp(
   token: string,
   Date: string,
   id: string
+  /* name : string, */
 ) {
   const response = await fetch(
     "https://presentation-day-1-spicylatte.vercel.app" +
@@ -17,15 +19,19 @@ export default async function postBookCamp(
       }),
     }
   );
-/*   console.log(process.env.BACKEND_URL); */
+  const res = await response.json();
   if (!response.ok) {
-/*     console.log(token);
-    console.log(Date);
-    console.log(id); */
-    alert('อย่าเหลี่ยม')
-    /* throw new Error("Failed to book"); */
+    Swal.fire({
+      title: "Error!",
+      text: "You has already made 3 booking",
+      icon: "error",
+    });
   } else {
-    alert("Let's goooo");
+    Swal.fire({
+      title: "Success!",
+      text: "Booking edited successfully",
+      icon: "success",
+    });
   }
-  return await response.json();
+  return res;
 }
