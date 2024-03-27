@@ -28,37 +28,48 @@ export default function Page() {
 
   const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(!email || !password || !fullName || !tel) {
+    if (!email || !password || !fullName || !tel) {
       MySwal.fire({
         icon: "error",
         title: <p>Error</p>,
         text: "Please fill all the fields",
         confirmButtonText: "Let me try again!",
-        confirmButtonColor: "#F27474"
+        confirmButtonColor: "#F27474",
       });
       setError("Please fill all the fields");
       return;
     }
-    if(isNaN(Number(tel))) {
+    if (isNaN(Number(tel))) {
       MySwal.fire({
         icon: "error",
         title: <p>Error</p>,
         text: "Phone number must be a number",
         confirmButtonText: "Let me try again!",
-        confirmButtonColor: "#F27474"
+        confirmButtonColor: "#F27474",
       });
       setError("Phone number must be a number");
       return;
     }
-    if(password !== passwordConfirm) {
+    if (password !== passwordConfirm) {
       MySwal.fire({
         icon: "error",
         title: <p>Error</p>,
         text: "Password and Confirm Password must be the same",
         confirmButtonText: "Let me try again!",
-        confirmButtonColor: "#F27474"
+        confirmButtonColor: "#F27474",
       });
       setError("Password and Confirm Password must be the same");
+      return;
+    }
+    if (password.length < 6) {
+      MySwal.fire({
+        icon: "error",
+        title: <p>Error</p>,
+        text: "Password can't be less than 6 characters",
+        confirmButtonText: "Let me try again!",
+        confirmButtonColor: "#F27474",
+      });
+      setError("Password can't be less than 6 characters");
       return;
     }
     try {
@@ -69,7 +80,7 @@ export default function Page() {
           title: <p>Error</p>,
           text: "Invalid Credentials",
           confirmButtonText: "Let me try again!",
-          confirmButtonColor: "#F27474"
+          confirmButtonColor: "#F27474",
         });
         setError("There's an error while signing you up");
         return;
@@ -84,7 +95,7 @@ export default function Page() {
         title: <p>Welcome!</p>,
         text: "Sign Up successful",
         confirmButtonText: "Dismiss",
-        confirmButtonColor: "#A5DC86"
+        confirmButtonColor: "#A5DC86",
       });
       router.refresh(); // refresh the nav
       router.replace(callbackUrl ?? "/");

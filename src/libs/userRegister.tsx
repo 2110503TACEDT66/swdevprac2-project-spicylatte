@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 export default async function userSignUp(
   name: string,
   email: string,
@@ -21,6 +23,14 @@ export default async function userSignUp(
       }),
     }
   );
-  if (!response.ok) throw new Error("Failed to sign Up");
-  return await response.json();
+  const res = await response.json();
+  if (!response.ok) {
+    Swal.fire({
+      title: "Error!",
+      text: res.message || "There's an error while registering user",
+      icon: "error",
+    });
+    throw new Error(res.message);
+  }
+  return res;
 }
