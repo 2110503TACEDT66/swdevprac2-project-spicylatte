@@ -46,7 +46,7 @@ export default async function page() {
       <div className=" border-b border-gray-200 max-w-max mx-auto p-10">
         <div className="flex items-center gap-5">
           <h1 className="text-6xl font-bold text-gray-800 inline">
-            Your Bookings
+            {!isAdmin ? "Your Bookings" : "Manage Bookings"}
           </h1>
           {isAdmin && (
             <AdminClearBookingBtn

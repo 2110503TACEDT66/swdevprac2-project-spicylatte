@@ -4,13 +4,13 @@ import React from "react";
 import { CgProfile } from "react-icons/cg";
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
- import { UserProfileResponse } from "@/type"; 
+import { UserProfileResponse } from "@/type";
 export default async function Nav() {
   const session = await getServerSession(authOption);
-  let user;
+  let user, isAdmin;
   if (session) {
-     user = (await getUserProfile(session.user.token)) as UserProfileResponse; 
-
+    user = (await getUserProfile(session.user.token)) as UserProfileResponse;
+    isAdmin = user.data.role === "admin";
   }
   return (
     <div className="flex font-poppin text-lg justify-between mx-10 font-normal py-3 sticky top-0 z-50  rounded-b-xl">
@@ -23,7 +23,11 @@ export default async function Nav() {
         </Link>
 
         <Link href="/">Home</Link>
-        {session ? <Link href="/profile">My Bookings</Link> : null}
+        {session ? (
+          <Link href="/profile">
+            {!isAdmin ? "My Bookings" : "Manage Bookings"}
+          </Link>
+        ) : null}
       </div>
       <div className="flex gap-10 items-center">
         <div>
