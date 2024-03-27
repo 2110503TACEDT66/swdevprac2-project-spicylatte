@@ -16,7 +16,7 @@ import {
 } from "@material-tailwind/react";
 import postBookCamp from "@/libs/postBookCamp";
 import { useState } from "react";
-
+import getDate from "@/libs/getDate";
 export default function BookingCard({
   imgSrc,
   name,
@@ -33,10 +33,11 @@ export default function BookingCard({
   id: string;
 }) {
   const session = useSession();
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState<Date>();
 
   const handleBtn = () => {
-    postBookCamp(session.data!.user.token, date.toString(), id);
+    if(!date) return;
+    postBookCamp(session.data!.user.token, getDate(date), id);
   };
   return (
     <ThemeProvider>
@@ -200,6 +201,7 @@ export default function BookingCard({
         <div className="flex flex-row mx-3 mb-3">
           <DatepickBtn
             Fn={(e: any) => {
+              
               setDate(e);
               console.log(e);
             }}

@@ -5,6 +5,7 @@ export default async function postBookCamp(
   id: string
   /* name : string, */
 ) {
+  console.log("posted" + Date);
   const response = await fetch(
     "https://presentation-day-1-spicylatte.vercel.app" +
       `/api/v1/campground/${id}/bookings/`,

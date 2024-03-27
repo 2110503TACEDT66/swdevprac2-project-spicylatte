@@ -1,17 +1,25 @@
 import Swal from "sweetalert2";
 
-export default async function deleteAllBookInCamp(Campid: string, token: string) {
+export default async function deleteAllBookInCamp(
+  token: string,
+  Campid: string,
+  bookDate: string
+) {
   const response = await fetch(
     "https://presentation-day-1-spicylatte.vercel.app" +
       `/api/v1/campground/${Campid}/bookings/`,
     {
       method: "DELETE",
       headers: {
+        "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
+      body: JSON.stringify({
+        bookDate: bookDate,
+      }),
     }
   );
-  const res = response.json();
+  const res = await response.json();
   if (!response.ok) {
     Swal.fire({
       title: "Error!",
@@ -21,8 +29,9 @@ export default async function deleteAllBookInCamp(Campid: string, token: string)
   } else {
     Swal.fire({
       title: "Success!",
-      text: "All Book has been Delete",
+      text: `All Booking in ${Campid} on ${bookDate} has been Deleted for ${res.counts}`,
       icon: "success",
     });
   }
+  return res;
 }
