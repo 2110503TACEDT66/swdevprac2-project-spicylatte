@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -29,3 +29,4 @@ export default function HardCodeForImg({ name }: { name: string }) {
     />
   );
 }
+ */

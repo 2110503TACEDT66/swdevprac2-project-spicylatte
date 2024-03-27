@@ -13,7 +13,7 @@ import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import deleteBookById from "@/libs/deleteBookById";
 import { useRouter } from "next/navigation";
-import HardCodeForJustImg from "./HardCodeForJustImg";
+/* import HardCodeForJustImg from "./HardCodeForJustImg"; */
 import { FaLocationDot } from "react-icons/fa6";
 import getDate from "@/libs/getDate";
 export default function Bookings({
@@ -72,9 +72,9 @@ export default function Bookings({
         )}
 
         <div className="flex-row flex items-center p-10 gap-10 pb-0">
-          <HardCodeForJustImg
+          {/* <HardCodeForJustImg
             name={booking.campground.name}
-          ></HardCodeForJustImg>
+          ></HardCodeForJustImg> */}
           <div className="text-md text-gray-700">
             <h2 className="font-medium text-3xl">{booking.campground?.name}</h2>
             {/* Address */}
