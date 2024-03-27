@@ -15,24 +15,26 @@ import getAllCamp from "@/libs/getAllCamp";
 export default async function page() {
   const session = await getServerSession(authOption);
 
-  // const getAllCampgroundAvaliable = async () => {
-  //   const campgrounds = (await getAllCamp()).data as Campgrounds[];
-  //   const campgroundsHaveBooking = campgrounds.filter(
-  //     (campground) => campground.bookings.length > 0
-  //   );
+  const getAllCampgroundAvaliable = async () => {
+    const campgrounds = (await getAllCamp()).data as Campgrounds[];
+    const campgroundsHaveBooking = campgrounds.filter(
+      (campground) => campground.bookings.length > 0
+    );
 
-  //   const campgroundsId = campgroundsHaveBooking.map(
-  //     (campground) => campground.id
-  //   );
-  //   return campgroundsId;
-  // };
+    const campgroundsId = campgroundsHaveBooking.map(
+      (campground) => campground.id
+    );
+    return campgroundsId;
+  };
 
   if (!session) return null;
   const bookings = await getAllBookings(session.user.token);
 
-  const user = (await getUserProfile(session.user.token)) as UserProfileResponse;
+  const user = (await getUserProfile(
+    session.user.token
+  )) as UserProfileResponse;
   const isAdmin = user.data.role === "admin";
-
+  const availableCampgound = await getAllCampgroundAvaliable();
   return (
     <div className="mx-auto container ">
       <div className=" border-b border-gray-200 max-w-max mx-auto p-10">
@@ -41,9 +43,7 @@ export default async function page() {
             {!isAdmin ? "Your Bookings" : "Manage Bookings"}
           </h1>
           {isAdmin && (
-            <AdminClearBookingBtn
-              allCampgroundAvaliable={["dasdas", "dasdadsasd"]}
-            />
+            <AdminClearBookingBtn allCampgroundAvaliable={availableCampgound} />
           )}
           {/* <IoMdRefresh
             className="inline"
