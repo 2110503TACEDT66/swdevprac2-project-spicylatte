@@ -35,4 +35,5 @@ export type Campground = {
   name: string;
   tel: string;
   id: string;
+  address: string;
 };

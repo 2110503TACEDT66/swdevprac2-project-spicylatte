@@ -13,26 +13,37 @@ import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import deleteBookById from "@/libs/deleteBookById";
 import { useRouter } from "next/navigation";
-export default function Bookings({ booking }: { booking: Booking }) {
+import { FaLocationDot } from "react-icons/fa6";
+import getDate from "@/libs/getDate";
+export default function Bookings({
+  booking,
+  isAdmin,
+}: {
+  booking: Booking;
+  isAdmin: boolean;
+}) {
   const router = useRouter();
   const { data: session } = useSession();
   const bookCreatedAt = new Date(booking.createdAt);
   const checkIn = new Date(booking.bookDate);
-  const [editDate, setEditDate] = React.useState<string>("");
+  const [editDate, setEditDate] = React.useState<Date>();
   const [isEditing, setIsEditing] = React.useState<boolean>(false);
   const handleEditDate = async () => {
-    console.log(session?.user.token, editDate.toString(), booking._id);
+    if(!editDate) return;
     const put = await putBookCamp(
       session?.user.token as string,
-      editDate.toString(),
+      getDate(editDate),
       booking._id
     );
+    router.refresh();
   };
   const handleDelete = async () => {
     Swal.fire({
-      title: "Do you want to delete booking?",
+      title: "<p>Do you want to delete booking?</p>",
       icon: "warning",
-      text: `Booking : ${booking.campground?.name}`,
+      text: `Booking : ${booking.campground?.name} ${
+        isAdmin && `From user ${booking.user}`
+      }`,
       showDenyButton: true,
       confirmButtonColor: "#4b5563",
       denyButtonColor: "#aaa",
@@ -53,6 +64,12 @@ export default function Bookings({ booking }: { booking: Booking }) {
   return (
     <div className="bg-gray-200 container rounded-2xl items-center  max-w-4xl mx-auto">
       <div className="relative mb-10">
+        {isAdmin && (
+          <span className="text-gray-500 top-5 right-5 absolute text-sm">
+            Booking id: {booking._id}
+          </span>
+        )}
+
         <div className="flex-row flex items-center p-10 gap-10 pb-0">
           <Image
             src="/river.jpeg"
@@ -64,6 +81,9 @@ export default function Bookings({ booking }: { booking: Booking }) {
           />
           <div className="text-md text-gray-700">
             <h2 className="font-medium text-3xl">{booking.campground?.name}</h2>
+            {/* Address */}
+            <FaLocationDot className="inline mr-2" />
+            <span>{booking.campground?.address}</span>
             <p>
               <span className="text-blue-500">Booking created at:</span>{" "}
               {bookCreatedAt.toDateString()}
@@ -124,7 +144,7 @@ export default function Bookings({ booking }: { booking: Booking }) {
             className="bg-red-500 text-white font-bold px-4 py-2 rounded-full"
             onClick={handleDelete}
           >
-            Cancel this booking
+            {!isAdmin ? "Cancel this booking " : "Force Cancel this booking"}
           </button>
         </div>
       </div>
