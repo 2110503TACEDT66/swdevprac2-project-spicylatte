@@ -30,7 +30,7 @@ export default function Bookings({
   const [editDate, setEditDate] = React.useState<Date>();
   const [isEditing, setIsEditing] = React.useState<boolean>(false);
   const handleEditDate = async () => {
-    if(!editDate) return;
+    if (!editDate) return;
     const put = await putBookCamp(
       session?.user.token as string,
       getDate(editDate),
@@ -72,14 +72,19 @@ export default function Bookings({
         )}
 
         <div className="flex-row flex items-center p-10 gap-10 pb-0">
-          {/* <HardCodeForJustImg
-            name={booking.campground.name}
-          ></HardCodeForJustImg> */}
+          <Image
+            src={booking.campground.imgSrc || "/public/img/bg.png"}
+            alt="Your Booking"
+            width={520}
+            height={360}
+
+            className="rounded-lg w-[25%] h-[25%] bg-black items-center shadow-xl"
+          />
           <div className="text-md text-gray-700">
             <h2 className="font-medium text-3xl">{booking.campground?.name}</h2>
             {/* Address */}
             <FaLocationDot className="inline mr-2" />
-            <span>{booking.campground?.address}</span>
+            <span>{booking.campground.address}</span>
             <p>
               <span className="text-blue-500">Booking created at:</span>{" "}
               {bookCreatedAt.toDateString()}
