@@ -16,16 +16,13 @@ export default async function page() {
   const session = await getServerSession(authOption);
 
   let bookings: any;
-  const fetchBookings = async () => {
-    if (!session) return;
-    bookings = await getAllBookings(session.user.token);
-  };
+
   const getAllCampgroundAvaliable = async () => {
     const campgrounds = (await getAllCamp()).data as Campgrounds[];
     const campgroundsHaveBooking = campgrounds.filter(
       (campground) => campground.bookings.length > 0
     );
-    
+
     const campgroundsId = campgroundsHaveBooking.map(
       (campground) => campground.id
     );
@@ -34,7 +31,7 @@ export default async function page() {
 
   if (!session) redirect("/auth/signin");
   else {
-    await fetchBookings();
+    bookings = await getAllBookings(session.user.token);
   }
   const user = (await getUserProfile(
     session.user.token
