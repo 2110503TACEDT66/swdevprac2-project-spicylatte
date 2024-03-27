@@ -15,27 +15,22 @@ import getAllCamp from "@/libs/getAllCamp";
 export default async function page() {
   const session = await getServerSession(authOption);
 
-  let bookings: any;
+  // const getAllCampgroundAvaliable = async () => {
+  //   const campgrounds = (await getAllCamp()).data as Campgrounds[];
+  //   const campgroundsHaveBooking = campgrounds.filter(
+  //     (campground) => campground.bookings.length > 0
+  //   );
 
-  const getAllCampgroundAvaliable = async () => {
-    const campgrounds = (await getAllCamp()).data as Campgrounds[];
-    const campgroundsHaveBooking = campgrounds.filter(
-      (campground) => campground.bookings.length > 0
-    );
+  //   const campgroundsId = campgroundsHaveBooking.map(
+  //     (campground) => campground.id
+  //   );
+  //   return campgroundsId;
+  // };
 
-    const campgroundsId = campgroundsHaveBooking.map(
-      (campground) => campground.id
-    );
-    return campgroundsId;
-  };
+  if (!session) return null;
+  const bookings = await getAllBookings(session.user.token);
 
-  if (!session) redirect("/auth/signin");
-  else {
-    bookings = await getAllBookings(session.user.token);
-  }
-  const user = (await getUserProfile(
-    session.user.token
-  )) as UserProfileResponse;
+  const user = (await getUserProfile(session.user.token)) as UserProfileResponse;
   const isAdmin = user.data.role === "admin";
 
   return (
@@ -47,7 +42,7 @@ export default async function page() {
           </h1>
           {isAdmin && (
             <AdminClearBookingBtn
-              allCampgroundAvaliable={await getAllCampgroundAvaliable()}
+              allCampgroundAvaliable={["dasdas", "dasdadsasd"]}
             />
           )}
           {/* <IoMdRefresh
