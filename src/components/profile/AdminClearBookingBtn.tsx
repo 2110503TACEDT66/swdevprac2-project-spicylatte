@@ -3,6 +3,7 @@ import deleteAllBookInCamp from "@/libs/deleteAllBookInCamp";
 import getAllCamp from "@/libs/getAllCamp";
 import { Campgrounds } from "@/type";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React from "react";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -11,6 +12,7 @@ export default function adminRemoveAllBooking({
 }: {
   allCampgroundAvaliable: string[];
 }) {
+  const router = useRouter();
   const MySwal = withReactContent(Swal);
   const { data: session } = useSession();
   function arrayToObj(arr: string[]): { [key: string]: string } {
@@ -21,6 +23,7 @@ export default function adminRemoveAllBooking({
     return obj;
   }
   function getTodayDate(): string {
+    
     const today = new Date();
     const year = today.getFullYear().toString().padStart(4, "0");
     const month = (today.getMonth() + 1).toString().padStart(2, "0");
@@ -60,6 +63,7 @@ export default function adminRemoveAllBooking({
         }
       },
     });
+    if (!campground) return;
     const { value: date } = await MySwal.fire({
       title: "Type a Date",
       input: "text",
@@ -83,11 +87,18 @@ export default function adminRemoveAllBooking({
     if (!date || !campground) {
       return;
     }
-    console.log(campground);
-    console.log(date);
-    console.log("UTC", new Date(date).toISOString());
-    console.log(session!.user.token);
-    // const del = await deleteAllBookInCamp(session!.user.token, campground, date);
+    // console.log(campground);
+    // console.log(date);
+    // console.log("UTC", new Date(date).toISOString());
+    // console.log(session!.user.token);
+    const del = await deleteAllBookInCamp(
+      session!.user.token,
+      campground,
+      date
+    );
+    if(del.counts > 0){
+      router.refresh()
+    }
     // console.log(del);
   };
   return (

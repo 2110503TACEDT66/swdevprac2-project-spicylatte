@@ -135,7 +135,7 @@ export default function Bookings({
             </div>
           </div>
         </div>
-        <div className="flex justify-end pr-10 pb-5 w-full">
+        <div className="flex justify-end pr-10 pb-5 mt-5 w-full">
           <button
             className="bg-red-500 text-white font-bold px-4 py-2 rounded-full"
             onClick={handleDelete}

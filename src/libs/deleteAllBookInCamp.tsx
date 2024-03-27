@@ -27,11 +27,21 @@ export default async function deleteAllBookInCamp(
       icon: "error",
     });
   } else {
-    Swal.fire({
-      title: "Success!",
-      text: `All Booking in ${Campid} on ${bookDate} has been Deleted for ${res.counts}`,
-      icon: "success",
-    });
+    if (res.counts === 0) {
+      Swal.fire({
+        title: "Error!",
+        text: `0 booking was delete ${Campid} on ${bookDate}`,
+        icon: "error",
+      });
+    } else {
+      Swal.fire({
+        title: "Success!",
+        text: `All Booking in ${Campid} on ${bookDate} has been Deleted for ${
+          res.counts || 0
+        }`,
+        icon: "success",
+      });
+    }
   }
   return res;
 }
