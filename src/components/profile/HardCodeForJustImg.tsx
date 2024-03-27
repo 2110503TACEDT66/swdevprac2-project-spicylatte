@@ -25,7 +25,7 @@ export default function HardCodeForImg({ name }: { name: string }) {
       width={3}
       height={3}
       sizes="50vw"
-      className="rounded-lg w-[25%] h-[25%] bg-black items-center"
+      className="rounded-lg w-[25%] h-[25%] bg-black items-center shadow-xl"
     />
   );
 }

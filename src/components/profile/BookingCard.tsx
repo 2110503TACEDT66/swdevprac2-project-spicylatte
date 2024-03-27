@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import deleteBookById from "@/libs/deleteBookById";
 import { useRouter } from "next/navigation";
+import HardCodeForJustImg from "./HardCodeForJustImg";
 import { FaLocationDot } from "react-icons/fa6";
 import getDate from "@/libs/getDate";
 export default function Bookings({
@@ -62,7 +63,7 @@ export default function Bookings({
     });
   };
   return (
-    <div className="bg-gray-200 container rounded-2xl items-center  max-w-4xl mx-auto">
+    <div className="bg-gray-200 container rounded-2xl items-center  max-w-4xl mx-auto shadow-xl">
       <div className="relative mb-10">
         {isAdmin && (
           <span className="text-gray-500 top-5 right-5 absolute text-sm">
@@ -71,14 +72,9 @@ export default function Bookings({
         )}
 
         <div className="flex-row flex items-center p-10 gap-10 pb-0">
-          <Image
-            src="/river.jpeg"
-            alt="Your Booking"
-            width={3}
-            height={3}
-            sizes="50vw"
-            className="rounded-lg w-[25%] h-[25%] bg-black items-center"
-          />
+          <HardCodeForJustImg
+            name={booking.campground.name}
+          ></HardCodeForJustImg>
           <div className="text-md text-gray-700">
             <h2 className="font-medium text-3xl">{booking.campground?.name}</h2>
             {/* Address */}

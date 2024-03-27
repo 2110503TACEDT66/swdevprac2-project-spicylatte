@@ -25,7 +25,7 @@ export default function Banner() {
     setCurIdx(i);
   };
   return (
-    <div className="flex justify-start p-16">
+    <div className="grid grid-cols-2 justify-start p-16 justify-end">
       <Carousel
         placeholder={""}
         className="max-w-3xl rounded-3xl shadow-2xl "
@@ -35,8 +35,14 @@ export default function Banner() {
           <img key={index} src={e.img} />
         ))}
       </Carousel>
-      <div>
-          
+      <div className="flex justify-center">
+        <div className="font-poppin font-light text-lg text-center self-center">
+          Whether you're seeking an adrenaline rush or a peaceful retreat,
+          SpicyLatte Campground has something for everyone. Book your stay today
+          and embark on a journey of discovery, relaxation, and unforgettable
+          memories. We can't wait to welcome you to our little haven in the
+          wilderness!
+        </div>
       </div>
     </div>
   );
