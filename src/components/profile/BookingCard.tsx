@@ -130,7 +130,7 @@ export default function Bookings({
               </div>
               <div className="">
                 <div className=" text-lg"> Telephone Number</div>
-                <Link href={`tel:${booking.campground.tel}`}>
+                <Link href={`tel:${booking.campground.tel}`} prefetch={false}>
                   <div className=" bg-white rounded-full max-w-max p-2 px-4 flex items-center gap-2 ">
                     <FaPhone className="inline fill-green-400 " />
                     <span>{booking.campground.tel}</span>
