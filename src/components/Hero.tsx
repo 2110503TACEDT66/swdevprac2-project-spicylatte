@@ -15,7 +15,7 @@ export default function Hero() {
           src="/img/bg.png"
           width={1920}
           height={1080}
-          className="absolute"
+          className="absolute top-0 right-0"
         />
         <div className="relative bgcolor flex flex-col  ">
           <div className="">

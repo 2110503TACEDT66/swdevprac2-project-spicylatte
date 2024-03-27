@@ -16,7 +16,7 @@ export type Campgrounds = {
   name: string;
   address: string;
   __v: number;
-  bookings: [];
+  bookings: Booking[];
   id: string;
   imgSrc: string;
   tel: string;
@@ -28,11 +28,11 @@ export type Booking = {
   user: string;
   campground: Campground;
   createdAt: string;
-
 };
 export type Campground = {
   _id: string;
   name: string;
   tel: string;
   id: string;
+  imgSrc: string;
 };

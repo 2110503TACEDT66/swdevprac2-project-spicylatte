@@ -23,7 +23,7 @@ export default async function postBookCamp(
   if (!response.ok) {
     Swal.fire({
       title: "Error!",
-      text: "You has already made 3 booking",
+      text: "You has already made 3 booking or date didn't select yet",
       icon: "error",
     });
   } else {
