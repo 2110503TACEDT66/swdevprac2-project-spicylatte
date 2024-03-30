@@ -12,7 +12,7 @@ jest.mock("@/libs/getAllBookings", () => ({
   default: async () => ({ data: [] }),
 }));
 
-test("Redirects to /booking if no bookings", async () => {
+describe("Redirects to /booking if no bookings", async () => {
   render(<Page />);
 
   await waitFor(() => {
