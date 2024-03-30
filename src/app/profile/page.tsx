@@ -45,11 +45,6 @@ export default async function page() {
           {isAdmin && (
             <AdminClearBookingBtn allCampgroundAvaliable={availableCampgound} />
           )}
-          {/* <IoMdRefresh
-            className="inline"
-            size={20}
-            onClick={void fetchBookings()}
-          /> */}
         </div>
       </div>
       <div className="flex justify-center items-center ">

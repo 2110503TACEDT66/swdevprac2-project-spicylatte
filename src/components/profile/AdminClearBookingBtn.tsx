@@ -23,7 +23,6 @@ export default function adminRemoveAllBooking({
     return obj;
   }
   function getTodayDate(): string {
-    
     const today = new Date();
     const year = today.getFullYear().toString().padStart(4, "0");
     const month = (today.getMonth() + 1).toString().padStart(2, "0");
@@ -96,8 +95,8 @@ export default function adminRemoveAllBooking({
       campground,
       date
     );
-    if(del.counts > 0){
-      router.refresh()
+    if (del.counts > 0) {
+      router.refresh();
     }
     // console.log(del);
   };
