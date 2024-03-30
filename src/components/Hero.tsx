@@ -21,7 +21,7 @@ export default function Hero() {
           <div className="">
             <div className="font-poppin font-bold text-6xl  ">
               <div className="bg-gradient-to-r from-[#0B60B0] to-[#40A2D8] bg-clip-text text-transparent mb-3">
-                CAMPGROUNG{" "}
+                CAMPGROUNG
               </div>
               <div className="mb-3">Booking </div>
             </div>

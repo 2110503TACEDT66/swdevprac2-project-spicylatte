@@ -36,7 +36,7 @@ export default function BookingCard({
   const [date, setDate] = useState<Date>();
 
   const handleBtn = () => {
-    if(!date) return;
+    if (!date) return;
     postBookCamp(session.data!.user.token, getDate(date), id);
   };
   return (
@@ -201,11 +201,11 @@ export default function BookingCard({
         <div className="flex flex-row mx-3 mb-3">
           <DatepickBtn
             Fn={(e: any) => {
-              
               setDate(e);
               console.log(e);
             }}
           />
+          {/* <DatepickBtn/> */}
 
           <div className="flex justify-center">
             <Button placeholder={""} onClick={handleBtn}>

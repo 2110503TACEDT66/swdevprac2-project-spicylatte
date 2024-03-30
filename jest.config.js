@@ -15,13 +15,13 @@ const config = {
   globals: {
     fetch: global.fetch,
   },
-  moduleNameMapper: {
+/*   moduleNameMapper: {
     "^jose": require.resolve("jose"),
     "^@panva/hkdf": require.resolve("@panva/hkdf"),
     "^preact-render-to-string": require.resolve("preact-render-to-string"),
     "^preact": require.resolve("preact"),
     "^uuid": require.resolve("uuid")
-  },
+  }, */
 }
  
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

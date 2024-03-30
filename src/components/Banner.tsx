@@ -25,7 +25,7 @@ export default function Banner() {
     setCurIdx(i);
   };
   return (
-    <div className="grid grid-cols-2 justify-start p-16 justify-end">
+    <div className="grid grid-cols-2  p-16 justify-end">
       <Carousel
         placeholder={""}
         className="max-w-3xl rounded-3xl shadow-2xl "
